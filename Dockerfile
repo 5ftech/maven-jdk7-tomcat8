@@ -37,6 +37,11 @@ ENV MAVEN_CONFIG "$USER_HOME_DIR/.m2"
 VOLUME "$USER_HOME_DIR/.m2" 
 
 #tomcat8
+ENV CATALINA_HOME /usr/local/tomcat
+ENV PATH $CATALINA_HOME/bin:$PATH
+RUN mkdir -p "$CATALINA_HOME"
+WORKDIR $CATALINA_HOME
+
 ENV TOMCAT_VERSION 8.0.43
 ENV TOMCAT_TGZ_URL http://mirror.bit.edu.cn/apache/tomcat/tomcat-8/v$TOMCAT_VERSION/bin/apache-tomcat-$TOMCAT_VERSION.tar.gz
 
