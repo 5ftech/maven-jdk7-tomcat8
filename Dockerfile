@@ -1,5 +1,14 @@
 FROM maven:3.3.3-jdk-7
 
+ADD timezone /etc/timezone
+RUN cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+
+ADD local /var/lib/locales/supported.d/local
+RUN locale-gen --purge
+ADD locale /etc/default/locale
+
+
+
 ENV CATALINA_HOME /usr/local/tomcat
 ENV PATH $CATALINA_HOME/bin:$PATH
 RUN mkdir -p "$CATALINA_HOME"
